@@ -7,8 +7,8 @@ let oncer = true;
 
 export const UserAgent = () => {
   const [userAgent, setUserAgent] = useState<string | undefined>();
+  const { userAgent: userAgentJS } = useUserAgentContext();
   if (oncer) {
-    let { userAgent: userAgentJS } = useUserAgentContext();
     if (!userAgentJS) {
       const fetchUA = async () => {
         const res = await fetch(`http://localhost:3000/api/ua`);

@@ -1,6 +1,5 @@
 import { createStyledLink } from "@/utils/createStyledLink";
 import React from "react";
-import { NextApiRequest, NextApiResponse } from 'next';
 
 
 const PRODUCTS_LINK_TEXT = "Products";
