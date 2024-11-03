@@ -19,10 +19,13 @@ export const Products: React.FC = () => {
   } = usePagination({ items: PRODUCTS_DATA, itemsPerPage: 5 });
 
   const handleOpenModal = useCallback((product: Product) => {
+    console.log(product);
+    localStorage.setItem('product', JSON.stringify(product));
     setSelectedProduct(product);
   }, []);
 
   const handleCloseModal = useCallback(() => {
+    localStorage.clear()
     setSelectedProduct(null);
   }, []);
 

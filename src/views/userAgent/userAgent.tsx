@@ -2,9 +2,27 @@
 
 import { BackToHome } from "@/components/backToHome/backToHome";
 import { useUserAgentContext } from "@/components/providers/userAgentProvider";
+import { useState } from "react";
+let oncer = true;
 
 export const UserAgent = () => {
-  const { userAgent } = useUserAgentContext();
+  const [userAgent, setUserAgent] = useState<string | undefined>();
+  const { userAgent: userAgentJS } = useUserAgentContext();
+  if (oncer) {
+    if (!userAgentJS) {
+      const fetchUA = async () => {
+        const res = await fetch(`http://localhost:3000/api/ua`);
+        const data: { userAgent: string } = await res.json();
+        setUserAgent(data.userAgent)
+        console.log(data.userAgent)
+      }
+      fetchUA();
+    }
+    else {
+      setUserAgent(userAgentJS);
+    }
+    oncer = false
+  }
 
   return (
     <div>
